@@ -1,0 +1,12 @@
+query users {
+  users {
+    id
+    username
+    createdAt
+    updatedAt
+  }
+}
+
+query userCount {
+  userCount
+}
