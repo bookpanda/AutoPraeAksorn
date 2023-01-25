@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Turbo Next Nest GraphQL Prisma</title>
+        <title>AutoPraeAksorn</title>
         <meta
           content="My personal stack for production app"
           name="description"
