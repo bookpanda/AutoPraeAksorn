@@ -9,7 +9,10 @@ import "react-image-crop/dist/ReactCrop.css";
 
 import Image from "next/image";
 
+import { Button } from "@mui/material";
+
 import { canvasPreview } from "./canvasPreview";
+import { getCroppedImg } from "./getCroppedImage";
 import { useDebounceEffect } from "./useDebounceEffect";
 
 // This is to demonstate how to make and center a % aspect crop
@@ -94,6 +97,17 @@ export function ImageProcessor() {
     }
   }
 
+  const test = async () => {
+    if (previewCanvasRef.current && crop) {
+      const croppedImg = await getCroppedImg(
+        previewCanvasRef.current,
+        crop,
+        "as"
+      );
+      console.log(croppedImg);
+    }
+  };
+
   return (
     <div className="App">
       <div className="Crop-Controls">
@@ -158,6 +172,7 @@ export function ImageProcessor() {
           />
         )}
       </div>
+      <Button onClick={() => test()}>save</Button>
     </div>
   );
 }
