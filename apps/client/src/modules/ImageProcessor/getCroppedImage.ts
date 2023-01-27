@@ -10,6 +10,8 @@ export function getCroppedImg(
   canvas.height = pixelCrop.height;
   const ctx: CanvasRenderingContext2D | null = canvas.getContext("2d");
 
+  console.log(`width: ${pixelCrop.width}, height: ${pixelCrop.height}`);
+
   (ctx as CanvasRenderingContext2D).drawImage(
     image,
     pixelCrop.x,
@@ -27,9 +29,17 @@ export function getCroppedImg(
 
   // As a blob
   return new Promise((resolve, reject) => {
-    canvas.toBlob((file) => {
+    canvas.toBlob((blob) => {
       //   file.name = fileName;
-      resolve(file);
+      if (!blob) {
+        //reject(new Error('Canvas is empty'));
+        console.error("Canvas is empty");
+        return;
+      }
+      //   blob.name = fileName;
+
+      resolve(window.URL.createObjectURL(blob));
+      //   resolve(blob);
     }, "image/jpeg");
   });
 }

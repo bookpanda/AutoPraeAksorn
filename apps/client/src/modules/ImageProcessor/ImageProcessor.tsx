@@ -6,6 +6,7 @@ import ReactCrop, {
   makeAspectCrop,
 } from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
+import FileResizer from "react-image-file-resizer";
 
 import Image from "next/image";
 
@@ -92,8 +93,8 @@ export function ImageProcessor() {
       setAspect(undefined);
     } else if (imgRef.current) {
       const { height, width } = imgRef.current;
-      setAspect(16 / 9);
-      setCrop(centerAspectCrop(width, height, 16 / 9));
+      setAspect(2 / 1);
+      setCrop(centerAspectCrop(width, height, 2 / 1));
     }
   }
 
@@ -104,7 +105,30 @@ export function ImageProcessor() {
         crop,
         "as"
       );
-      console.log(croppedImg);
+      console.log(croppedImg as Blob);
+    }
+    // const newImage = await new Promise((resolve) => {
+    //   FileResizer.imageFileResizer(
+    //     croppedImg as Blob,
+    //     25,
+    //     50,
+    //     "PNG",
+    //     10,
+    //     0,
+    //     (uri) => {
+    //       resolve(uri);
+    //     },
+    //     "base64"
+    //   );
+    // });
+    // console.log(newImage);
+    // }
+    const canvas = document.getElementById("canvasId");
+    if (previewCanvasRef.current) {
+      const image = previewCanvasRef.current.toDataURL("image/png");
+      // .replace("image/png", "image/octet-stream"); // here is the most important part because if you dont replace you will get a DOM 18 exception.
+      window.location.href = image; // it will save locally
+      console.log(image);
     }
   };
 
@@ -163,6 +187,7 @@ export function ImageProcessor() {
         {!!completedCrop && (
           <canvas
             ref={previewCanvasRef}
+            id="canvasId"
             style={{
               border: "1px solid black",
               objectFit: "contain",
