@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactCrop, {
   Crop,
   PixelCrop,
@@ -127,10 +127,42 @@ export function ImageProcessor() {
     if (previewCanvasRef.current) {
       const image = previewCanvasRef.current.toDataURL("image/png");
       // .replace("image/png", "image/octet-stream"); // here is the most important part because if you dont replace you will get a DOM 18 exception.
-      window.location.href = image; // it will save locally
+      // window.location.href = image; // it will save locally
       console.log(image);
+
+      const contents = image.split(",")[1];
+      const obj = { filename: "image.png", contents };
+      const formData = new FormData();
+      formData.append("filename", "image.png");
+      formData.append("contents", contents);
+      console.log(formData, contents);
+      const url = "https://AutoPraeAksorn.idhibhat-pankam.repl.co";
+      await fetch(url, {
+        method: "POST",
+        headers: {
+          // Accept: "application/json",
+          // "Content-Type": "application/json",
+        },
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          localStorage.setItem("imgData", data.content);
+        });
+      // .then((response) => response.blob())
+      // .then((imageBlob) => {
+      //   // Then create a local URL for that image and print it
+      //   const imageObjectURL = URL.createObjectURL(imageBlob);
+      //   console.log(imageObjectURL);
+      // });
     }
   };
+  const [imgL, setImgL] = useState("");
+  useEffect(() => {
+    const a = localStorage.getItem("imgData");
+    if (a) setImgL("data:image/png;base64," + a);
+  }, []);
 
   return (
     <div className="App">
@@ -198,6 +230,7 @@ export function ImageProcessor() {
         )}
       </div>
       <Button onClick={() => test()}>save</Button>
+      {imgL && <Image alt="Crop me" height={100} src={imgL} width={100} />}
     </div>
   );
 }
