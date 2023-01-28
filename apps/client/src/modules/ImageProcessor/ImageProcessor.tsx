@@ -1,42 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
-import ReactCrop, {
-  Crop,
-  PixelCrop,
-  centerCrop,
-  makeAspectCrop,
-} from "react-image-crop";
+import ReactCrop, { Crop, PixelCrop } from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
-import FileResizer from "react-image-file-resizer";
 
 import Image from "next/image";
 
 import { Button } from "@mui/material";
 
 import { canvasPreview } from "./canvasPreview";
-import { getCroppedImg } from "./getCroppedImage";
+import { centerAspectCrop } from "./centerAspectCrop";
 import { useDebounceEffect } from "./useDebounceEffect";
-
-// This is to demonstate how to make and center a % aspect crop
-// which is a bit trickier so we use some helper functions.
-function centerAspectCrop(
-  mediaWidth: number,
-  mediaHeight: number,
-  aspect: number
-) {
-  return centerCrop(
-    makeAspectCrop(
-      {
-        unit: "%",
-        width: 90,
-      },
-      aspect,
-      mediaWidth,
-      mediaHeight
-    ),
-    mediaWidth,
-    mediaHeight
-  );
-}
 
 export function ImageProcessor() {
   const [imgSrc, setImgSrc] = useState("");
@@ -74,7 +46,6 @@ export function ImageProcessor() {
         imgRef.current &&
         previewCanvasRef.current
       ) {
-        // We use canvasPreview as it's much faster than imgPreview.
         canvasPreview(
           imgRef.current,
           previewCanvasRef.current,
@@ -99,50 +70,14 @@ export function ImageProcessor() {
   }
 
   const test = async () => {
-    if (previewCanvasRef.current && crop) {
-      const croppedImg = await getCroppedImg(
-        previewCanvasRef.current,
-        crop,
-        "as"
-      );
-      console.log(croppedImg as Blob);
-    }
-    // const newImage = await new Promise((resolve) => {
-    //   FileResizer.imageFileResizer(
-    //     croppedImg as Blob,
-    //     25,
-    //     50,
-    //     "PNG",
-    //     10,
-    //     0,
-    //     (uri) => {
-    //       resolve(uri);
-    //     },
-    //     "base64"
-    //   );
-    // });
-    // console.log(newImage);
-    // }
-    const canvas = document.getElementById("canvasId");
     if (previewCanvasRef.current) {
-      const image = previewCanvasRef.current.toDataURL("image/png");
-      // .replace("image/png", "image/octet-stream"); // here is the most important part because if you dont replace you will get a DOM 18 exception.
-      // window.location.href = image; // it will save locally
-      console.log(image);
-
-      const contents = image.split(",")[1];
-      const obj = { filename: "image.png", contents };
+      const imageURL = previewCanvasRef.current.toDataURL("image/png");
+      const contents = imageURL.split(",")[1];
       const formData = new FormData();
-      formData.append("filename", "image.png");
       formData.append("contents", contents);
-      console.log(formData, contents);
       const url = "https://AutoPraeAksorn.idhibhat-pankam.repl.co";
       await fetch(url, {
         method: "POST",
-        headers: {
-          // Accept: "application/json",
-          // "Content-Type": "application/json",
-        },
         body: formData,
       })
         .then((response) => response.json())
@@ -150,12 +85,6 @@ export function ImageProcessor() {
           console.log(data);
           localStorage.setItem("imgData", data.content);
         });
-      // .then((response) => response.blob())
-      // .then((imageBlob) => {
-      //   // Then create a local URL for that image and print it
-      //   const imageObjectURL = URL.createObjectURL(imageBlob);
-      //   console.log(imageObjectURL);
-      // });
     }
   };
   const [imgL, setImgL] = useState("");
