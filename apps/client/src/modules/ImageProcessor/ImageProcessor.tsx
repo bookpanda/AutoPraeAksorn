@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import ReactCrop from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
 
 import Image from "next/image";
@@ -10,25 +9,22 @@ import { ImagesData } from "$core/@types";
 import { useProcessContext } from "$core/contexts/process";
 
 import { canvasPreview } from "./canvasPreview";
+import { CompletedCrop } from "./components/completedCrop";
+import { CropArea } from "./components/cropArea";
+import { Rotate } from "./components/rotate";
+import { Scale } from "./components/scale";
 import { useDebounceEffect } from "./useDebounceEffect";
 
 export function ImageProcessor() {
   const processContext = useProcessContext();
   const {
-    aspect,
     completedCrop,
-    crop,
     imgRef,
     imgSrc,
-    onImageLoad,
     onSelectFile,
     previewCanvasRef,
     rotate,
     scale,
-    setCompletedCrop,
-    setCrop,
-    setRotate,
-    setScale,
   } = processContext;
 
   useDebounceEffect(
@@ -94,64 +90,11 @@ export function ImageProcessor() {
   return (
     <div className="App bg-red-100">
       <div className="Crop-Controls bg-green-100">
-        <div>
-          <label htmlFor="scale-input">Scale: </label>
-          <input
-            disabled={!imgSrc}
-            id="scale-input"
-            step="0.1"
-            type="number"
-            value={scale}
-            onChange={(e) => setScale(Number(e.target.value))}
-          />
-        </div>
-        <div>
-          <label htmlFor="rotate-input">Rotate: </label>
-          <input
-            disabled={!imgSrc}
-            id="rotate-input"
-            type="number"
-            value={rotate}
-            onChange={(e) =>
-              setRotate(Math.min(180, Math.max(-180, Number(e.target.value))))
-            }
-          />
-        </div>
+        <Scale />
+        <Rotate />
       </div>
-      {!!imgSrc && (
-        <div>
-          <ReactCrop
-            aspect={aspect}
-            crop={crop}
-            onChange={(_, percentCrop) => setCrop(percentCrop)}
-            onComplete={(c) => setCompletedCrop(c)}
-          >
-            <Image
-              ref={imgRef}
-              alt="Crop me"
-              height={800}
-              src={imgSrc}
-              style={{ transform: `scale(${scale}) rotate(${rotate}deg)` }}
-              width={800}
-              onLoad={onImageLoad}
-            />
-          </ReactCrop>
-        </div>
-      )}
-      <div>
-        {!!completedCrop && (
-          <canvas
-            ref={previewCanvasRef}
-            id="canvasId"
-            style={{
-              border: "1px solid black",
-              objectFit: "contain",
-              width: completedCrop.width,
-              height: completedCrop.height,
-            }}
-          />
-        )}
-      </div>
+      {!!imgSrc && <CropArea />}
+      <CompletedCrop />
       <input accept="image/*" type="file" onChange={onSelectFile} />
       <Button onClick={() => test()}>save</Button>
       {imgL.map((picture, index) => (
