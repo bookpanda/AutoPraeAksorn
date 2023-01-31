@@ -1,11 +1,13 @@
 import { createContext, useContext } from "react";
 
+import { ImagesData } from "$core/@types";
+
 interface IAppContext {
-  image: { base64: string; code: number[][] }[];
+  image: ImagesData;
 }
 
 export const AppContext = createContext<IAppContext>({
-  image: [],
+  image: { data: [] },
 });
 
 export function useAppContext() {
