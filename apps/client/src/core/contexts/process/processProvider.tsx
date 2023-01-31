@@ -1,6 +1,8 @@
 import { FC, PropsWithChildren, useRef, useState } from "react";
 import { Crop, PixelCrop } from "react-image-crop";
 
+import { ImagesData } from "$core/@types";
+import { fetchData } from "$core/api/fetchData";
 import { centerAspectCrop } from "$modules/ImageProcessor/centerAspectCrop";
 
 import { ProcessContext } from "./processContext";
@@ -42,6 +44,16 @@ export const ProcessProvider: FC<PropsWithChildren> = ({ children }) => {
       setCrop(centerAspectCrop(width, height, 2 / 1));
     }
   }
+
+  const processImage = async () => {
+    if (previewCanvasRef?.current) {
+      const imageURL = previewCanvasRef.current.toDataURL("image/png");
+      const contents = imageURL.split(",")[1];
+      const formData = new FormData();
+      formData.append("contents", contents);
+      await fetchData(formData);
+    }
+  };
   return (
     <ProcessContext.Provider
       value={{
@@ -60,6 +72,7 @@ export const ProcessProvider: FC<PropsWithChildren> = ({ children }) => {
         setScale,
         setCompletedCrop,
         setCrop,
+        processImage,
       }}
     >
       {children}

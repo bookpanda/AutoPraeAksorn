@@ -17,6 +17,7 @@ interface IProcessContext {
   setRotate: (rotation: number) => void;
   setCrop: (crop: Crop) => void;
   setCompletedCrop: (completedCrop: PixelCrop) => void;
+  processImage: () => void;
 }
 
 export const ProcessContext = createContext<IProcessContext>({
@@ -35,6 +36,7 @@ export const ProcessContext = createContext<IProcessContext>({
   setRotate: () => null,
   setCrop: () => null,
   setCompletedCrop: () => null,
+  processImage: () => null,
 });
 
 export function useProcessContext() {

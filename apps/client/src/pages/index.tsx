@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Box, Container, Typography } from "@mui/material";
 
 import { MyPage } from "$core/@types";
+import { Gallery } from "$modules/Gallery";
 import { ImageProcessor } from "$modules/ImageProcessor";
 
 import { plates_3 } from "../../public/index";
@@ -33,6 +34,7 @@ const IndexPage: MyPage = () => {
         }}
       >
         <ImageProcessor />
+        <Gallery />
       </Box>
     </Container>
   );
