@@ -49,11 +49,19 @@ export function ImageProcessor() {
   return (
     <div className="App bg-red-100">
       <div className="Crop-Controls bg-green-100">
-        <Scale />
-        <Rotate />
+        {!!imgSrc && (
+          <div className="flex justify-center space-x-8 p-8">
+            <CropArea />
+            <CompletedCrop />
+          </div>
+        )}
+        {imgSrc && (
+          <div>
+            <Scale />
+            <Rotate />
+          </div>
+        )}
       </div>
-      {!!imgSrc && <CropArea />}
-      <CompletedCrop />
       <input accept="image/*" type="file" onChange={onSelectFile} />
       <Button onClick={() => processImage()}>save</Button>
     </div>

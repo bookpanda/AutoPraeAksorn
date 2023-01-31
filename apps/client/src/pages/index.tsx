@@ -3,12 +3,16 @@ import Image from "next/image";
 import { Box, Container, Typography } from "@mui/material";
 
 import { MyPage } from "$core/@types";
+import { useAppContext } from "$core/contexts/app";
 import { Gallery } from "$modules/Gallery";
 import { ImageProcessor } from "$modules/ImageProcessor";
+import { Loading } from "$modules/Loading";
 
 import { plates_3 } from "../../public/index";
 
 const IndexPage: MyPage = () => {
+  const appContext = useAppContext();
+  const { loading } = appContext;
   return (
     <Container maxWidth="xl">
       <Typography component="h2" fontWeight="bold" variant="h2">
@@ -33,7 +37,7 @@ const IndexPage: MyPage = () => {
           backgroundColor: "paleturquoise",
         }}
       >
-        <ImageProcessor />
+        {loading ? <Loading /> : <ImageProcessor />}
         <Gallery />
       </Box>
     </Container>

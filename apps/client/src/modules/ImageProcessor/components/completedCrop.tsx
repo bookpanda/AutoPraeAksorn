@@ -6,7 +6,7 @@ export const CompletedCrop: FC = () => {
   const processContext = useProcessContext();
   const { completedCrop, previewCanvasRef } = processContext;
   return (
-    <div>
+    <div className="flex w-2/5 items-center justify-center">
       {!!completedCrop && (
         <canvas
           ref={previewCanvasRef}

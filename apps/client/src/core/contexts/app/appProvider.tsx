@@ -6,6 +6,7 @@ import { AppContext } from "./appContext";
 
 export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
   const [image, setImage] = useState<ImagesData>({ data: [] });
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const a = localStorage.getItem("images");
     if (a) {
@@ -14,6 +15,8 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
     }
   }, []);
   return (
-    <AppContext.Provider value={{ image }}>{children}</AppContext.Provider>
+    <AppContext.Provider value={{ image, loading, setLoading }}>
+      {children}
+    </AppContext.Provider>
   );
 };
