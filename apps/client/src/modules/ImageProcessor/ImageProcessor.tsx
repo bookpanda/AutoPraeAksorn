@@ -10,6 +10,7 @@ import { CompletedCrop } from "./components/completedCrop";
 import { CropArea } from "./components/cropArea";
 import { Rotate } from "./components/rotate";
 import { Scale } from "./components/scale";
+import { UploadButton } from "./components/uploadButton";
 import { useDebounceEffect } from "./useDebounceEffect";
 
 export function ImageProcessor() {
@@ -18,7 +19,6 @@ export function ImageProcessor() {
     completedCrop,
     imgRef,
     imgSrc,
-    onSelectFile,
     previewCanvasRef,
     processImage,
     rotate,
@@ -47,9 +47,10 @@ export function ImageProcessor() {
   );
 
   return (
-    <div className="App bg-red-100">
+    <div className="App min-h-[40vh] bg-red-100 p-4">
+      <UploadButton />
       <div className="Crop-Controls bg-green-100">
-        {!!imgSrc && (
+        {imgSrc && (
           <div className="flex justify-center space-x-8 p-8">
             <CropArea />
             <CompletedCrop />
@@ -59,11 +60,17 @@ export function ImageProcessor() {
           <div>
             <Scale />
             <Rotate />
+
+            <Button
+              component="label"
+              variant="contained"
+              onClick={() => processImage()}
+            >
+              save
+            </Button>
           </div>
         )}
       </div>
-      <input accept="image/*" type="file" onChange={onSelectFile} />
-      <Button onClick={() => processImage()}>save</Button>
     </div>
   );
 }
