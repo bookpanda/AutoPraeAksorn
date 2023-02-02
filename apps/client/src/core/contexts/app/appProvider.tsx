@@ -5,17 +5,17 @@ import { ImagesData } from "$core/@types";
 import { AppContext } from "./appContext";
 
 export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [image, setImage] = useState<ImagesData>({ data: [] });
+  const [images, setImages] = useState<ImagesData>({ data: [] });
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     const a = localStorage.getItem("images");
     if (a) {
       const image: ImagesData = JSON.parse(a);
-      setImage(image);
+      setImages(image);
     }
-  }, []);
+  }, [loading]);
   return (
-    <AppContext.Provider value={{ image, loading, setLoading }}>
+    <AppContext.Provider value={{ images, loading, setLoading, setImages }}>
       {children}
     </AppContext.Provider>
   );

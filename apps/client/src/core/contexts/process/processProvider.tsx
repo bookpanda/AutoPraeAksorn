@@ -1,7 +1,6 @@
 import { FC, PropsWithChildren, useRef, useState } from "react";
 import { Crop, PixelCrop } from "react-image-crop";
 
-import { ImagesData } from "$core/@types";
 import { fetchData } from "$core/api/fetchData";
 import { centerAspectCrop } from "$modules/ImageProcessor/centerAspectCrop";
 
