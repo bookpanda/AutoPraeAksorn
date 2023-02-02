@@ -21,13 +21,19 @@ export const Gallery: FC = () => {
   }, []);
   const onDragEnd = ({ destination, source }: DropResult) => {
     if (!destination) return;
-
     const newItems = reorder(items, source.index, destination.index);
-
     setItems(newItems);
-    console.log(newItems);
 
-    // localStorage.setItem("images", newItems);
+    const imagesData: ImagesData = { data: [] };
+    for (let i = 0; i < newItems.length; i++) {
+      const item = newItems[i];
+      const imageUrl = item.split("base64,")[1];
+      imagesData.data.push({
+        base64: imageUrl,
+        code: [[0]],
+      });
+    }
+    localStorage.setItem("images", JSON.stringify(imagesData));
   };
   function makeid(length: number) {
     let result = "";
@@ -56,16 +62,6 @@ export const Gallery: FC = () => {
           )}
         </Droppable>
       </DragDropContext>
-      {/* {items.map((picture, index) => (
-        <Image
-          key={index}
-          alt="Crop me"
-          className="mb-2"
-          height={100}
-          src={picture}
-          width={100}
-        />
-      ))} */}
     </>
   );
 };
