@@ -3,6 +3,7 @@ import { Draggable } from "react-beautiful-dnd";
 
 import Image from "next/image";
 
+import DeleteIcon from "@mui/icons-material/Delete";
 import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
 import StadiumIcon from "@mui/icons-material/Stadium";
 import { Button, IconButton, ListItem, Typography } from "@mui/material";
@@ -63,9 +64,14 @@ export const GalleryItem: FC<GalleryItemProps> = ({ index, picture }) => {
               <StadiumIcon sx={{ fontSize: 40 }} />
             </IconButton>
           </div>
-          <div className="col-span-10 col-start-12 flex items-center justify-center space-x-8">
+          <div className="col-start-8 col-end-10 flex items-center justify-center space-x-8">
             {/* <Button variant="text">PDF</Button> */}
-            <Button variant="text">JSON</Button>
+            <Button variant="text">กระดาษตัก JSON</Button>
+          </div>
+          <div className="col-start-12 col-end-12 flex items-center justify-center">
+            <IconButton aria-label="cheer" color="primary" component="label">
+              <DeleteIcon color="error" sx={{ fontSize: 40 }} />
+            </IconButton>
           </div>
         </ListItem>
       )}

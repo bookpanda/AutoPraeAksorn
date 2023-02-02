@@ -11,6 +11,8 @@ interface IAppContext {
   previewImage: string;
   setPreview: (open: boolean) => void;
   setPreviewImage: (previewImage: string) => void;
+  loadingText: string;
+  setLoadingText: (text: string) => void;
 }
 
 export const AppContext = createContext<IAppContext>({
@@ -22,6 +24,8 @@ export const AppContext = createContext<IAppContext>({
   previewImage: "",
   setPreview: () => null,
   setPreviewImage: () => null,
+  loadingText: "",
+  setLoadingText: () => null,
 });
 
 export function useAppContext() {

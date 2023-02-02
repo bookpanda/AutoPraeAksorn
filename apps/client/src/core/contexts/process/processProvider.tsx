@@ -7,6 +7,7 @@ import { centerAspectCrop } from "$modules/ImageProcessor/centerAspectCrop";
 import { useAppContext } from "../app";
 
 import { ProcessContext } from "./processContext";
+import { randomLoadingText } from "./randomLoadingText";
 
 export const ProcessProvider: FC<PropsWithChildren> = ({ children }) => {
   const [imgSrc, setImgSrc] = useState("");
@@ -18,7 +19,7 @@ export const ProcessProvider: FC<PropsWithChildren> = ({ children }) => {
   const [rotate, setRotate] = useState(0);
   const [aspect, setAspect] = useState<number | undefined>(2 / 1);
   const appContext = useAppContext();
-  const { setLoading } = appContext;
+  const { setLoading, setLoadingText } = appContext;
 
   function onSelectFile(e: React.ChangeEvent<HTMLInputElement>) {
     if (e.target.files && e.target.files.length > 0) {
@@ -54,6 +55,7 @@ export const ProcessProvider: FC<PropsWithChildren> = ({ children }) => {
       const contents = imageURL.split(",")[1];
       const formData = new FormData();
       formData.append("contents", contents);
+      setLoadingText(randomLoadingText());
       setLoading(true);
       await fetchData(formData).then(() => {
         setLoading(false);

@@ -7,6 +7,7 @@ import { AppContext } from "./appContext";
 export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
   const [images, setImages] = useState<ImagesData>({ data: [] });
   const [loading, setLoading] = useState(false);
+  const [loadingText, setLoadingText] = useState("");
   const [preview, setPreview] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   useEffect(() => {
@@ -27,6 +28,8 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
         setPreview,
         previewImage,
         setPreviewImage,
+        loadingText,
+        setLoadingText,
       }}
     >
       {children}
