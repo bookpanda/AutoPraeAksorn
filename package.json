@@ -14,12 +14,13 @@
     "start:server": "FORCE_COLOR=2 turbo run --filter=\"@org/server\" start"
   },
   "dependencies": {
+    "@mui/icons-material": "^5.11.0",
     "@prisma/client": "^4.8.1"
   },
   "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^4.0.0",
     "@leomotors/config": "^0.9.1",
     "@nestjs/cli": "^9.1.8",
+    "@trivago/prettier-plugin-sort-imports": "^4.0.0",
     "@types/eslint": "^8.4.10",
     "@types/node": "^18.11.18",
     "@types/prettier": "^2.7.2",

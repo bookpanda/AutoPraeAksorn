@@ -7,6 +7,10 @@ interface IAppContext {
   loading: boolean;
   setLoading: (loading: boolean) => void;
   setImages: (image: ImagesData) => void;
+  preview: boolean;
+  previewImage: string;
+  setPreview: (open: boolean) => void;
+  setPreviewImage: (previewImage: string) => void;
 }
 
 export const AppContext = createContext<IAppContext>({
@@ -14,6 +18,10 @@ export const AppContext = createContext<IAppContext>({
   loading: false,
   setLoading: () => null,
   setImages: () => null,
+  preview: false,
+  previewImage: "",
+  setPreview: () => null,
+  setPreviewImage: () => null,
 });
 
 export function useAppContext() {

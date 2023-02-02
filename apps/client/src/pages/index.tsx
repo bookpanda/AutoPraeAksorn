@@ -7,6 +7,7 @@ import { useAppContext } from "$core/contexts/app";
 import { Gallery } from "$modules/Gallery";
 import { ImageProcessor } from "$modules/ImageProcessor";
 import { Loading } from "$modules/Loading";
+import { Preview } from "$modules/Preview";
 
 import { plates_3 } from "../../public/index";
 
@@ -34,12 +35,12 @@ const IndexPage: MyPage = () => {
           display: "flex-col",
           alignContent: "center",
           justifyContent: "center",
-          backgroundColor: "paleturquoise",
         }}
       >
         {loading ? <Loading /> : <ImageProcessor />}
         <Gallery />
       </Box>
+      <Preview />
     </Container>
   );
 };
