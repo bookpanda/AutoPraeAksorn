@@ -27,11 +27,7 @@ export const Loading: FC = () => {
       >
         Did you know?
       </Typography>
-      <Typography
-        className="mt-8 text-center font-bold"
-        component="h5"
-        variant="h5"
-      >
+      <Typography className="mt-8 text-center" component="h5" variant="h5">
         {loadingText}
       </Typography>
     </div>

@@ -12,7 +12,7 @@ export const UploadButton = () => {
     <div className="flex items-center justify-center">
       {imgSrc ? (
         <Button component="label" size="large" variant="contained">
-          <Typography className="font-bold" variant="h5">
+          <Typography fontWeight="bold" variant="h5">
             Upload
           </Typography>
           <input accept="image/*" hidden type="file" onChange={onSelectFile} />
