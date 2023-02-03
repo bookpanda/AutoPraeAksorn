@@ -38,11 +38,13 @@ const StandCheer: MyPage = () => {
         }}
       >
         {standLoading ? <Loading /> : <StandImage />}
-        <Link href="/">
-          <Button className="mt-8" size="large" variant="outlined">
-            Go back
-          </Button>
-        </Link>
+        <div className="mt-8">
+          <Link href="/">
+            <Button size="large" variant="outlined">
+              Go back
+            </Button>
+          </Link>
+        </div>
       </Box>
     </Container>
   );
