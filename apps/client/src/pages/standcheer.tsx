@@ -4,17 +4,14 @@ import { Box, Container, Typography } from "@mui/material";
 
 import { MyPage } from "$core/@types";
 import { useAppContext } from "$core/contexts/app";
-import { DeletePopup } from "$modules/DeletePopup";
-import { Gallery } from "$modules/Gallery";
-import { ImageProcessor } from "$modules/ImageProcessor";
 import { Loading } from "$modules/Loading";
-import { Preview } from "$modules/Preview";
+import { StandImage } from "$modules/StandImage";
 
 import { plates_3 } from "../../public/index";
 
-const IndexPage: MyPage = () => {
+const StandCheer: MyPage = () => {
   const appContext = useAppContext();
-  const { loading, standLoading } = appContext;
+  const { standLoading } = appContext;
   return (
     <Container maxWidth="xl">
       <Typography component="h2" fontWeight="bold" variant="h2">
@@ -31,6 +28,7 @@ const IndexPage: MyPage = () => {
         <Image alt="plates" src={plates_3} />
       </Box>
       <Box
+        className="mt-8 flex justify-center"
         sx={{
           width: "100%",
           display: "flex-col",
@@ -38,13 +36,10 @@ const IndexPage: MyPage = () => {
           justifyContent: "center",
         }}
       >
-        {loading || standLoading ? <Loading /> : <ImageProcessor />}
-        <Gallery />
+        {standLoading ? <Loading /> : <StandImage />}
       </Box>
-      <Preview />
-      <DeletePopup />
     </Container>
   );
 };
 
-export default IndexPage;
+export default StandCheer;

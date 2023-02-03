@@ -1,6 +1,9 @@
 import { FC, PropsWithChildren, useEffect, useState } from "react";
 
 import { CurrentImage, ImagesData } from "$core/@types";
+import { standPreview } from "$core/api/standPreview";
+
+import { randomLoadingText } from "../process/randomLoadingText";
 
 import { AppContext } from "./appContext";
 
@@ -15,6 +18,8 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
     code: [],
   });
   const [deletePopup, setDeletePopup] = useState(false);
+  const [standLoading, setStandLoading] = useState(false);
+
   useEffect(() => {
     const a = localStorage.getItem("images");
     if (a) {
@@ -22,12 +27,26 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
       setImages(image);
     }
   }, [loading]);
+
   const deleteImage = (index: number) => {
     const data = images.data;
     data.splice(index, 1);
     setImages({ data });
     localStorage.setItem("images", JSON.stringify(images));
   };
+
+  const standCheer = async (imageURL: string) => {
+    const contents = imageURL.split(",")[1];
+    const formData = new FormData();
+    formData.append("contents", contents);
+    setLoadingText(randomLoadingText());
+    setStandLoading(true);
+    await standPreview(formData).then(() => {
+      setStandLoading(false);
+      window.open("http://localhost:4200/standcheer");
+    });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -44,6 +63,9 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
         deleteImage,
         deletePopup,
         setDeletePopup,
+        standLoading,
+        setStandLoading,
+        standCheer,
       }}
     >
       {children}

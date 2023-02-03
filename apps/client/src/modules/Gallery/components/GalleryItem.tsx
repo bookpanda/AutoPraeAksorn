@@ -18,8 +18,15 @@ type GalleryItemProps = {
 
 export const GalleryItem: FC<GalleryItemProps> = ({ index, picture }) => {
   const appContext = useAppContext();
-  const { currentImage, setCurrentImage, setDeletePopup, setPreview } =
-    appContext;
+  const {
+    currentImage,
+    setCurrentImage,
+    setDeletePopup,
+    setPreview,
+    setStandLoading,
+    standCheer,
+    standLoading,
+  } = appContext;
   const handlePreview = () => {
     setCurrentImage({ ...currentImage, base64: picture });
     setPreview(true);
@@ -27,6 +34,10 @@ export const GalleryItem: FC<GalleryItemProps> = ({ index, picture }) => {
   const handleDelete = () => {
     setCurrentImage({ ...currentImage, index });
     setDeletePopup(true);
+  };
+  const handleStandCheer = () => {
+    setStandLoading(true);
+    standCheer(picture);
   };
   return (
     <Draggable draggableId={index.toString()} index={index}>
@@ -61,13 +72,22 @@ export const GalleryItem: FC<GalleryItemProps> = ({ index, picture }) => {
               height={200}
               src={picture}
               width={200}
-              // onClick={}
             />
           </div>
           <div className="col-start-5 col-end-7 flex items-center justify-center space-x-8">
-            <IconButton aria-label="cheer" color="primary" component="label">
-              <StadiumIcon sx={{ fontSize: 40 }} />
-            </IconButton>
+            {standLoading ? (
+              <IconButton color="primary" component="label" disabled>
+                <StadiumIcon sx={{ fontSize: 40 }} />
+              </IconButton>
+            ) : (
+              <IconButton
+                color="primary"
+                component="label"
+                onClick={() => handleStandCheer()}
+              >
+                <StadiumIcon sx={{ fontSize: 40 }} />
+              </IconButton>
+            )}
           </div>
           <div className="col-start-8 col-end-10 flex items-center justify-center space-x-8">
             {/* <Button variant="text">PDF</Button> */}

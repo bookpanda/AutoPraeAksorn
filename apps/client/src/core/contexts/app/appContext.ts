@@ -16,6 +16,9 @@ interface IAppContext {
   deleteImage: (index: number) => void;
   deletePopup: boolean;
   setDeletePopup: (deletePopup: boolean) => void;
+  standLoading: boolean;
+  setStandLoading: (standLoading: boolean) => void;
+  standCheer: (imageURL: string) => void;
 }
 
 export const AppContext = createContext<IAppContext>({
@@ -32,6 +35,9 @@ export const AppContext = createContext<IAppContext>({
   deleteImage: () => null,
   deletePopup: false,
   setDeletePopup: () => null,
+  standLoading: false,
+  setStandLoading: () => null,
+  standCheer: () => null,
 });
 
 export function useAppContext() {

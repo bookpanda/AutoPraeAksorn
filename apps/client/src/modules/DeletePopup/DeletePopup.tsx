@@ -1,13 +1,6 @@
 import React, { FC } from "react";
 
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-} from "@mui/material";
+import { Button, Dialog, DialogActions, DialogTitle } from "@mui/material";
 
 import { useAppContext } from "$core/contexts/app";
 
