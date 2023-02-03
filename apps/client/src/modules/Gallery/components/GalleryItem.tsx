@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { Draggable } from "react-beautiful-dnd";
 
 import Image from "next/image";
+import Link from "next/link";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
@@ -80,13 +81,15 @@ export const GalleryItem: FC<GalleryItemProps> = ({ index, picture }) => {
                 <StadiumIcon sx={{ fontSize: 40 }} />
               </IconButton>
             ) : (
-              <IconButton
-                color="primary"
-                component="label"
-                onClick={() => handleStandCheer()}
-              >
-                <StadiumIcon sx={{ fontSize: 40 }} />
-              </IconButton>
+              <Link href="/standcheer">
+                <IconButton
+                  color="primary"
+                  component="label"
+                  onClick={() => handleStandCheer()}
+                >
+                  <StadiumIcon sx={{ fontSize: 40 }} />
+                </IconButton>
+              </Link>
             )}
           </div>
           <div className="col-start-8 col-end-10 flex items-center justify-center space-x-8">

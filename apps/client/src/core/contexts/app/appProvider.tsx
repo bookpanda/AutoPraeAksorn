@@ -19,6 +19,7 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
   });
   const [deletePopup, setDeletePopup] = useState(false);
   const [standLoading, setStandLoading] = useState(false);
+  const [standImage, setStandImage] = useState("");
 
   useEffect(() => {
     const a = localStorage.getItem("images");
@@ -27,6 +28,13 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
       setImages(image);
     }
   }, [loading]);
+
+  useEffect(() => {
+    const a = localStorage.getItem("standImage");
+    if (a) {
+      setStandImage(JSON.parse(a));
+    }
+  }, [standLoading]);
 
   const deleteImage = (index: number) => {
     const data = images.data;
@@ -43,7 +51,6 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
     setStandLoading(true);
     await standPreview(formData).then(() => {
       setStandLoading(false);
-      window.open("http://localhost:4200/standcheer");
     });
   };
 
@@ -66,6 +73,8 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
         standLoading,
         setStandLoading,
         standCheer,
+        standImage,
+        setStandImage,
       }}
     >
       {children}

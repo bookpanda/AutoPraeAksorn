@@ -1,6 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Button, Container, Typography } from "@mui/material";
 
 import { MyPage } from "$core/@types";
 import { useAppContext } from "$core/contexts/app";
@@ -28,7 +29,7 @@ const StandCheer: MyPage = () => {
         <Image alt="plates" src={plates_3} />
       </Box>
       <Box
-        className="mt-8 flex justify-center"
+        className="mt-8 flex flex-col items-center justify-center"
         sx={{
           width: "100%",
           display: "flex-col",
@@ -37,6 +38,11 @@ const StandCheer: MyPage = () => {
         }}
       >
         {standLoading ? <Loading /> : <StandImage />}
+        <Link href="/">
+          <Button className="mt-8" size="large" variant="outlined">
+            Go back
+          </Button>
+        </Link>
       </Box>
     </Container>
   );
