@@ -43,7 +43,7 @@ export const GalleryItem: FC<GalleryItemProps> = ({ index, picture }) => {
   return (
     <Draggable draggableId={index.toString()} index={index}>
       {(provided, snapshot) => (
-        <ListItem
+        <div
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
@@ -52,8 +52,8 @@ export const GalleryItem: FC<GalleryItemProps> = ({ index, picture }) => {
             snapshot.isDragging ? "bg-gray-100" : "bg-white"
           )}
         >
-          <div className="col-span-1 flex items-center justify-center">
-            <DragIndicatorIcon className="mr-8" sx={{ fontSize: 35 }} />
+          <div className="col-span-1 flex items-center justify-center space-x-8">
+            <DragIndicatorIcon sx={{ fontSize: 35 }} />
             <Typography component="h6" variant="h6">
               {index}
             </Typography>
@@ -106,7 +106,7 @@ export const GalleryItem: FC<GalleryItemProps> = ({ index, picture }) => {
               <DeleteIcon color="error" sx={{ fontSize: 40 }} />
             </IconButton>
           </div>
-        </ListItem>
+        </div>
       )}
     </Draggable>
   );
