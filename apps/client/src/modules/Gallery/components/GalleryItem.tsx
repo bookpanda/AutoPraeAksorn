@@ -18,10 +18,15 @@ type GalleryItemProps = {
 
 export const GalleryItem: FC<GalleryItemProps> = ({ index, picture }) => {
   const appContext = useAppContext();
-  const { setPreview, setPreviewImage } = appContext;
+  const { currentImage, setCurrentImage, setDeletePopup, setPreview } =
+    appContext;
   const handlePreview = () => {
+    setCurrentImage({ ...currentImage, base64: picture });
     setPreview(true);
-    setPreviewImage(picture);
+  };
+  const handleDelete = () => {
+    setCurrentImage({ ...currentImage, index });
+    setDeletePopup(true);
   };
   return (
     <Draggable draggableId={index.toString()} index={index}>
@@ -69,7 +74,12 @@ export const GalleryItem: FC<GalleryItemProps> = ({ index, picture }) => {
             <Button variant="text">กระดาษตัก JSON</Button>
           </div>
           <div className="col-start-12 col-end-12 flex items-center justify-center">
-            <IconButton aria-label="cheer" color="primary" component="label">
+            <IconButton
+              aria-label="cheer"
+              color="primary"
+              component="label"
+              onClick={() => handleDelete()}
+            >
               <DeleteIcon color="error" sx={{ fontSize: 40 }} />
             </IconButton>
           </div>

@@ -4,7 +4,6 @@ import { DragDropContext, DropResult, Droppable } from "react-beautiful-dnd";
 import DownloadIcon from "@mui/icons-material/Download";
 import { Button, Divider, Typography } from "@mui/material";
 
-import { ImagesData } from "$core/@types";
 import { useAppContext } from "$core/contexts/app";
 
 import { GalleryItem } from "./components/GalleryItem";
@@ -19,15 +18,7 @@ export const Gallery: FC = () => {
     if (!destination) return;
     const newItems = reorder(items, source.index, destination.index);
     setImages({ data: newItems });
-
-    const imagesData: ImagesData = { data: [] };
-    for (let i = 0; i < newItems.length; i++) {
-      imagesData.data.push({
-        base64: newItems[i].base64,
-        code: [[0]],
-      });
-    }
-    localStorage.setItem("images", JSON.stringify(imagesData));
+    localStorage.setItem("images", JSON.stringify({ data: newItems }));
   };
   return (
     <>

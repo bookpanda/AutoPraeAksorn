@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-import { ImagesData } from "$core/@types";
+import { CurrentImage, ImagesData } from "$core/@types";
 
 interface IAppContext {
   images: ImagesData;
@@ -8,11 +8,14 @@ interface IAppContext {
   setLoading: (loading: boolean) => void;
   setImages: (image: ImagesData) => void;
   preview: boolean;
-  previewImage: string;
+  currentImage: CurrentImage;
   setPreview: (open: boolean) => void;
-  setPreviewImage: (previewImage: string) => void;
+  setCurrentImage: (CurrentImage: CurrentImage) => void;
   loadingText: string;
   setLoadingText: (text: string) => void;
+  deleteImage: (index: number) => void;
+  deletePopup: boolean;
+  setDeletePopup: (deletePopup: boolean) => void;
 }
 
 export const AppContext = createContext<IAppContext>({
@@ -21,11 +24,14 @@ export const AppContext = createContext<IAppContext>({
   setLoading: () => null,
   setImages: () => null,
   preview: false,
-  previewImage: "",
+  currentImage: { base64: "", index: -1, code: [] },
   setPreview: () => null,
-  setPreviewImage: () => null,
+  setCurrentImage: () => null,
   loadingText: "",
   setLoadingText: () => null,
+  deleteImage: () => null,
+  deletePopup: false,
+  setDeletePopup: () => null,
 });
 
 export function useAppContext() {

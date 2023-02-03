@@ -4,6 +4,7 @@ import { Box, Container, Typography } from "@mui/material";
 
 import { MyPage } from "$core/@types";
 import { useAppContext } from "$core/contexts/app";
+import { DeletePopup } from "$modules/DeletePopup";
 import { Gallery } from "$modules/Gallery";
 import { ImageProcessor } from "$modules/ImageProcessor";
 import { Loading } from "$modules/Loading";
@@ -41,6 +42,7 @@ const IndexPage: MyPage = () => {
         <Gallery />
       </Box>
       <Preview />
+      <DeletePopup />
     </Container>
   );
 };

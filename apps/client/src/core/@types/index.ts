@@ -10,3 +10,9 @@ export type ImagesData = {
     code: number[][];
   }[];
 };
+
+export type CurrentImage = {
+  base64: string;
+  index: number;
+  code: number[][];
+};
