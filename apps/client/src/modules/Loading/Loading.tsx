@@ -9,12 +9,22 @@ export const Loading: FC = () => {
   const { loadingText } = appContext;
   return (
     <div className="flex h-[40vh] flex-col items-center justify-center">
-      <Typography className="my-8 font-bold" component="h5" variant="h5">
+      <Typography
+        className="my-8"
+        component="h5"
+        fontWeight="bold"
+        variant="h5"
+      >
         This can take up to 30 seconds, please be patient like the students on
         the card stunts stand.
       </Typography>
       <CircularProgress size={90} />
-      <Typography className="mt-8 font-bold" component="h5" variant="h5">
+      <Typography
+        className="mt-8"
+        component="h5"
+        fontWeight="bold"
+        variant="h5"
+      >
         Did you know?
       </Typography>
       <Typography

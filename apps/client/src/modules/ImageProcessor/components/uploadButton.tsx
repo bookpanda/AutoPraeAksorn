@@ -20,8 +20,9 @@ export const UploadButton = () => {
       ) : (
         <div className="flex w-full flex-col items-center">
           <Typography
-            className="mb-8 font-semibold"
+            className="mb-8"
             component="h3"
+            fontWeight="bold"
             variant="h3"
           >
             Create your own Card Stunts here
@@ -31,7 +32,7 @@ export const UploadButton = () => {
             elevation={4}
           >
             <Button component="label" size="large" variant="text">
-              <Typography className="font-bold" variant="h5">
+              <Typography fontWeight="bold" variant="h5">
                 Upload
               </Typography>
               <input
