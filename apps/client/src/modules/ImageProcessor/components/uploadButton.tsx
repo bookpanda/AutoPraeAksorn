@@ -18,13 +18,8 @@ export const UploadButton = () => {
           <input accept="image/*" hidden type="file" onChange={onSelectFile} />
         </Button>
       ) : (
-        <div className="flex w-full flex-col items-center">
-          <Typography
-            className="mb-8"
-            component="h3"
-            fontWeight="bold"
-            variant="h3"
-          >
+        <div className="flex w-full flex-col items-center space-y-8">
+          <Typography component="h3" fontWeight="bold" variant="h3">
             Create your own Card Stunts here
           </Typography>
           <Paper
