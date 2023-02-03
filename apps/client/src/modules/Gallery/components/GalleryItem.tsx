@@ -91,7 +91,7 @@ export const GalleryItem: FC<GalleryItemProps> = ({ index, picture }) => {
           </div>
           <div className="col-start-8 col-end-10 flex items-center justify-center space-x-8">
             {/* <Button variant="text">PDF</Button> */}
-            <Button variant="text">กระดาษตัก JSON</Button>
+            <Button variant="text">CARD CODE (JSON)</Button>
           </div>
           <div className="col-start-12 col-end-12 flex items-center justify-center">
             <IconButton

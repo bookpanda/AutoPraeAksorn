@@ -14,8 +14,10 @@ export const Rotate: FC = () => {
     }
   };
   return (
-    <div className="w-1/3 bg-pink-100">
-      <label htmlFor="rotate-input">Rotate: </label>
+    <div className="w-1/3">
+      <label className="text-xl font-bold" htmlFor="rotate-input">
+        Rotate:{" "}
+      </label>
       <Slider
         defaultValue={0}
         disabled={!imgSrc}

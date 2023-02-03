@@ -14,8 +14,10 @@ export const Scale: FC = () => {
     }
   };
   return (
-    <div className="w-1/3 bg-pink-100">
-      <label htmlFor="scale-input">Scale: </label>
+    <div className="w-1/3">
+      <label className="text-xl font-bold" htmlFor="scale-input">
+        Scale:{" "}
+      </label>
       <Slider
         defaultValue={1}
         disabled={!imgSrc}

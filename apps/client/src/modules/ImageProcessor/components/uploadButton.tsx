@@ -9,7 +9,7 @@ export const UploadButton = () => {
   const { imgSrc, onSelectFile } = processContext;
 
   return (
-    <div className="flex items-center justify-center bg-blue-100">
+    <div className="flex items-center justify-center">
       {imgSrc ? (
         <Button component="label" size="large" variant="contained">
           <Typography className="font-bold" variant="h5">

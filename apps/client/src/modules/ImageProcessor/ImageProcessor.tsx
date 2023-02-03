@@ -47,9 +47,9 @@ export function ImageProcessor() {
   );
 
   return (
-    <div className="App min-h-[40vh] bg-red-100 p-4">
+    <div className="App min-h-[40vh] p-4">
       <UploadButton />
-      <div className="Crop-Controls bg-green-100">
+      <div className="Crop-Controls">
         {imgSrc && (
           <div className="flex justify-center space-x-8 p-8">
             <CropArea />
@@ -57,11 +57,12 @@ export function ImageProcessor() {
           </div>
         )}
         {imgSrc && (
-          <div>
+          <div className="flex flex-col items-center">
             <Scale />
             <Rotate />
 
             <Button
+              className="mt-8 w-1/5"
               component="label"
               variant="contained"
               onClick={() => processImage()}

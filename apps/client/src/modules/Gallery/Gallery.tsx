@@ -22,32 +22,34 @@ export const Gallery: FC = () => {
   };
   return (
     <>
-      <div className="grid w-full grid-cols-12 items-center p-4">
-        <div className="col-span-1 flex items-center justify-center">
-          <Typography component="h6" variant="h6">
-            Index
-          </Typography>
+      {items.length > 0 && (
+        <div className="grid w-full grid-cols-12 items-center p-4">
+          <div className="col-span-1 flex items-center justify-center">
+            <Typography component="h6" variant="h6">
+              Index
+            </Typography>
+          </div>
+          <div className="col-start-3 col-end-4 ml-20 flex items-center justify-center">
+            <Typography component="h6" variant="h6">
+              Card
+            </Typography>
+          </div>
+          <div className="col-start-5 col-end-7 flex items-center justify-center">
+            <Typography component="h6" variant="h6">
+              Display on cheer stand
+            </Typography>
+          </div>
+          <div className="col-start-8 col-end-12 flex items-center justify-center space-x-8">
+            <Button startIcon={<DownloadIcon />} variant="outlined">
+              All Card Codes (pdf)
+            </Button>
+            <Button startIcon={<DownloadIcon />} variant="outlined">
+              All Card Codes (json)
+            </Button>
+          </div>
         </div>
-        <div className="col-start-3 col-end-4 ml-20 flex items-center justify-center">
-          <Typography component="h6" variant="h6">
-            Card
-          </Typography>
-        </div>
-        <div className="col-start-5 col-end-7 flex items-center justify-center">
-          <Typography component="h6" variant="h6">
-            ขึ้นแสตนเชียร์
-          </Typography>
-        </div>
-        <div className="col-start-8 col-end-12 flex items-center justify-center space-x-8">
-          <Button startIcon={<DownloadIcon />} variant="outlined">
-            กระดาษตักทุกรูป (pdf)
-          </Button>
-          <Button startIcon={<DownloadIcon />} variant="outlined">
-            กระดาษตักทุกรูป (json)
-          </Button>
-        </div>
-      </div>
-      <Divider variant="middle" />
+      )}
+      {items.length > 0 && <Divider variant="middle" />}
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId={makeid(20)}>
           {(provided) => (

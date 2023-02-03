@@ -24,7 +24,6 @@ const IndexPage: MyPage = () => {
         sx={{
           width: 3 / 4,
           height: "2rem",
-          backgroundColor: "primary.main",
           overflow: "hidden",
         }}
       >
@@ -36,6 +35,7 @@ const IndexPage: MyPage = () => {
           display: "flex-col",
           alignContent: "center",
           justifyContent: "center",
+          paddingBottom: "10vh",
         }}
       >
         {loading || standLoading ? <Loading /> : <ImageProcessor />}
