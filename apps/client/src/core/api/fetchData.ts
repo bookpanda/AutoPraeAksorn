@@ -15,7 +15,7 @@ export const fetchData = async (formData: FormData) => {
       }
       imagesData.data.push({
         base64: "data:image/png;base64," + data.content,
-        code: [[0]],
+        code: data.kradatTak,
       });
       localStorage.setItem("images", JSON.stringify(imagesData));
     });

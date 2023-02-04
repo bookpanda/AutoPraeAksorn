@@ -12,7 +12,7 @@ import { reorder } from "./reorder";
 
 export const Gallery: FC = () => {
   const appContext = useAppContext();
-  const { images, setImages } = appContext;
+  const { downloadJSON, images, setImages } = appContext;
   const items = images.data;
   const onDragEnd = ({ destination, source }: DropResult) => {
     if (!destination) return;
@@ -40,10 +40,14 @@ export const Gallery: FC = () => {
             </Typography>
           </div>
           <div className="col-start-8 col-end-12 flex items-center justify-center space-x-8">
-            <Button startIcon={<DownloadIcon />} variant="outlined">
+            {/* <Button startIcon={<DownloadIcon />} variant="outlined">
               All Card Codes (pdf)
-            </Button>
-            <Button startIcon={<DownloadIcon />} variant="outlined">
+            </Button> */}
+            <Button
+              startIcon={<DownloadIcon />}
+              variant="outlined"
+              onClick={() => downloadJSON(-1)}
+            >
               All Card Codes (json)
             </Button>
           </div>

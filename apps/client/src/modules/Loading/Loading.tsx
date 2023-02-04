@@ -10,9 +10,9 @@ export const Loading: FC = () => {
   return (
     <div className="flex h-[40vh] flex-col items-center justify-center">
       <Typography
-        className="my-8"
         component="h5"
         fontWeight="bold"
+        sx={{ marginBottom: 6 }}
         variant="h5"
       >
         This can take up to 30 seconds, please be patient like the students on
@@ -20,14 +20,14 @@ export const Loading: FC = () => {
       </Typography>
       <CircularProgress size={90} />
       <Typography
-        className="mt-8"
         component="h5"
         fontWeight="bold"
+        sx={{ marginTop: 6 }}
         variant="h5"
       >
         Did you know?
       </Typography>
-      <Typography className="mt-8 text-center" component="h5" variant="h5">
+      <Typography component="h5" sx={{ marginTop: 4 }} variant="h5">
         {loadingText}
       </Typography>
     </div>

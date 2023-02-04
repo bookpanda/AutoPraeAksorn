@@ -21,6 +21,7 @@ interface IAppContext {
   setStandImage: (image: string) => void;
   setStandLoading: (standLoading: boolean) => void;
   standCheer: (imageURL: string) => void;
+  downloadJSON: (index: number) => void;
 }
 
 export const AppContext = createContext<IAppContext>({
@@ -42,6 +43,7 @@ export const AppContext = createContext<IAppContext>({
   setStandImage: () => null,
   setStandLoading: () => null,
   standCheer: () => null,
+  downloadJSON: () => null,
 });
 
 export function useAppContext() {

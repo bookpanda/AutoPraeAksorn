@@ -54,6 +54,28 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
     });
   };
 
+  const downloadJSON = (index: number) => {
+    const code = images.data;
+    let codeJSON = "";
+    if (index === -1) {
+      const onlyCode = [];
+      for (let i = 0; i < code.length; i++) {
+        onlyCode.push(code[i].code);
+      }
+      codeJSON = JSON.stringify(onlyCode);
+    } else {
+      codeJSON = JSON.stringify(code[index].code);
+    }
+    const dataStr =
+      "data:text/json;charset=utf-8," + encodeURIComponent(codeJSON);
+    const downloadAnchorNode = document.createElement("a");
+    downloadAnchorNode.setAttribute("href", dataStr);
+    downloadAnchorNode.setAttribute("download", "code.json");
+    document.body.appendChild(downloadAnchorNode); // required for firefox
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -75,6 +97,7 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
         standCheer,
         standImage,
         setStandImage,
+        downloadJSON,
       }}
     >
       {children}
