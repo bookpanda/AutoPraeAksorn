@@ -19,11 +19,16 @@ export const UploadButton = () => {
         </Button>
       ) : (
         <div className="flex w-full flex-col items-center space-y-8">
-          <Typography component="h3" fontWeight="bold" variant="h3">
+          <Typography
+            component="h4"
+            fontWeight="bold"
+            sx={{ textAlign: "center" }}
+            variant="h4"
+          >
             Create your own Card Stunts here
           </Typography>
           <Paper
-            className="flex h-[10vh] w-1/6 items-center justify-center"
+            className="flex h-[8vh] w-1/4 items-center justify-center  md:w-1/6"
             elevation={4}
           >
             <Button component="label" size="large" variant="text">

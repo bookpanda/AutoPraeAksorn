@@ -51,7 +51,7 @@ export function ImageProcessor() {
       <UploadButton />
       <div className="Crop-Controls">
         {imgSrc && (
-          <div className="flex justify-center space-x-8 p-8">
+          <div className="flex flex-col justify-center py-4 md:flex-row md:space-x-8 md:p-8">
             <CropArea />
             <CompletedCrop />
           </div>

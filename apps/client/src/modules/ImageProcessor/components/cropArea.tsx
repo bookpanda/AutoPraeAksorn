@@ -19,7 +19,7 @@ export const CropArea: FC = () => {
     setCrop,
   } = processContext;
   return (
-    <div className="w-2/5">
+    <div className="w-full md:w-2/5">
       <ReactCrop
         aspect={aspect}
         crop={crop}
