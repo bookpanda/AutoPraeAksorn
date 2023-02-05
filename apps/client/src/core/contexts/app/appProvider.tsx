@@ -9,7 +9,7 @@ import { AppContext } from "./appContext";
 
 export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
   const [images, setImages] = useState<ImagesData>({ data: [] });
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [loadingText, setLoadingText] = useState("");
   const [preview, setPreview] = useState(false);
   const [currentImage, setCurrentImage] = useState<CurrentImage>({
