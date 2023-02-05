@@ -24,22 +24,22 @@ export const Gallery: FC = () => {
     <>
       {items.length > 0 && (
         <div className="grid w-full grid-cols-12 items-center p-4">
-          <div className="col-span-1 flex items-center justify-center">
+          <div className="col-span-1 hidden items-center justify-center md:flex">
             <Typography component="h6" variant="h6">
               Index
             </Typography>
           </div>
-          <div className="col-start-3 col-end-4 ml-20 flex items-center justify-center">
+          <div className="col-start-3 col-end-4 ml-20 hidden items-center justify-center md:flex">
             <Typography component="h6" variant="h6">
               Card
             </Typography>
           </div>
-          <div className="col-start-5 col-end-7 flex items-center justify-center">
+          <div className="col-start-5 col-end-7 hidden items-center justify-center md:flex">
             <Typography component="h6" variant="h6">
               Display on cheer stand
             </Typography>
           </div>
-          <div className="col-start-8 col-end-12 flex items-center justify-center space-x-8">
+          <div className="col-start-5 col-end-9 flex items-center justify-center space-x-8 md:col-start-8 md:col-end-12">
             {/* <Button startIcon={<DownloadIcon />} variant="outlined">
               All Card Codes (pdf)
             </Button> */}

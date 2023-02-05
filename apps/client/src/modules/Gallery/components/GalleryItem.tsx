@@ -7,7 +7,8 @@ import Link from "next/link";
 import DeleteIcon from "@mui/icons-material/Delete";
 import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
 import StadiumIcon from "@mui/icons-material/Stadium";
-import { Button, IconButton, ListItem, Typography } from "@mui/material";
+import { Button, IconButton, Typography } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import clsx from "clsx";
 
 import { useAppContext } from "$core/contexts/app";
@@ -18,6 +19,7 @@ type GalleryItemProps = {
 };
 
 export const GalleryItem: FC<GalleryItemProps> = ({ index, picture }) => {
+  const matchesMD = useMediaQuery("(min-width:900px)");
   const appContext = useAppContext();
   const {
     currentImage,
@@ -55,31 +57,34 @@ export const GalleryItem: FC<GalleryItemProps> = ({ index, picture }) => {
         >
           <div className="col-span-1 flex items-center justify-center space-x-8">
             <DragIndicatorIcon sx={{ fontSize: 35 }} />
-            <Typography component="h6" variant="h6">
-              {index}
-            </Typography>
+            {matchesMD && (
+              <Typography component="h6" variant="h6">
+                {index}
+              </Typography>
+            )}
           </div>
-          <div className="relative col-start-3 col-end-5 flex">
-            <button
-              className="absolute inset-0 z-10 flex w-[200px] flex-col items-center justify-center rounded-xl bg-gray-100 bg-opacity-90 text-center opacity-0 duration-300 hover:cursor-pointer hover:opacity-80"
+          <div className="relative col-start-3 col-end-9 flex overflow-hidden md:col-start-3 md:col-end-5">
+            {/* <button
+              className="absolute inset-0 z-10 flex h-full flex-col items-center justify-center rounded-xl bg-gray-100 bg-opacity-90 text-center opacity-0 duration-300 hover:cursor-pointer hover:opacity-80"
               onClick={() => handlePreview()}
             >
               <Typography component="p" variant="body1">
                 Preview
               </Typography>
-            </button>
+            </button> */}
             <Image
               alt="picture"
-              className="rounded-xl"
+              className="rounded-xl duration-300 hover:cursor-pointer hover:opacity-60"
               height={200}
               src={picture}
               width={200}
+              onClick={() => handlePreview()}
             />
           </div>
-          <div className="col-start-5 col-end-7 flex items-center justify-center space-x-8">
+          <div className="col-start-10 col-end-11 flex items-center justify-center space-x-8 md:col-start-5 md:col-end-7">
             {standLoading ? (
               <IconButton color="primary" component="label" disabled>
-                <StadiumIcon sx={{ fontSize: 40 }} />
+                <StadiumIcon sx={{ fontSize: "5vh" }} />
               </IconButton>
             ) : (
               <Link href="/standcheer">
@@ -93,7 +98,7 @@ export const GalleryItem: FC<GalleryItemProps> = ({ index, picture }) => {
               </Link>
             )}
           </div>
-          <div className="col-start-8 col-end-10 flex items-center justify-center space-x-8">
+          <div className="col-start-8 col-end-10 hidden items-center justify-center space-x-8 md:flex">
             {/* <Button variant="text">PDF</Button> */}
             <Button variant="text" onClick={() => downloadJSON(index)}>
               CARD CODE (JSON)
@@ -106,7 +111,7 @@ export const GalleryItem: FC<GalleryItemProps> = ({ index, picture }) => {
               component="label"
               onClick={() => handleDelete()}
             >
-              <DeleteIcon color="error" sx={{ fontSize: 40 }} />
+              <DeleteIcon color="error" sx={{ fontSize: "5vh" }} />
             </IconButton>
           </div>
         </div>
