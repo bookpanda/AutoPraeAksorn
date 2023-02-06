@@ -54,12 +54,16 @@ export const ProcessProvider: FC<PropsWithChildren> = ({ children }) => {
       const imageURL = previewCanvasRef.current.toDataURL("image/png");
       const contents = imageURL.split(",")[1];
       const formData = new FormData();
+      const controller = new AbortController();
       formData.append("contents", contents);
       setLoadingText(randomLoadingText());
       setLoading(true);
       await fetchData(formData).then(() => {
         setLoading(false);
       });
+      return () => {
+        controller.abort();
+      };
     }
   };
   return (

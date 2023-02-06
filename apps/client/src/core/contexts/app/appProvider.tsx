@@ -46,12 +46,16 @@ export const AppProvider: FC<PropsWithChildren> = ({ children }) => {
   const standCheer = async (imageURL: string) => {
     const contents = imageURL.split(",")[1];
     const formData = new FormData();
+    const controller = new AbortController();
     formData.append("contents", contents);
     setLoadingText(randomLoadingText());
     setStandLoading(true);
     await standPreview(formData).then(() => {
       setStandLoading(false);
     });
+    return () => {
+      controller.abort();
+    };
   };
 
   const downloadJSON = (index: number) => {
