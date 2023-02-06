@@ -31,9 +31,11 @@ importers:
       prisma-nestjs-graphql: ^17.1.0
       turbo: ^1.6.3
       typescript: ^4.9.4
+      zod: ^3.20.2
     dependencies:
       '@mui/icons-material': 5.11.0_zsz4jwe3rpl7ht4h42iowjuxny
       '@prisma/client': 4.8.1_prisma@4.8.1
+      zod: 3.20.2
     devDependencies:
       '@leomotors/config': 0.9.1_q2vtn7bxvpynmpxitqohdouita
       '@nestjs/cli': 9.1.8
@@ -8966,4 +8968,8 @@ packages:
 
   /zen-observable/0.8.15:
     resolution: {integrity: sha512-PQ2PC7R9rslx84ndNBZB/Dkv8V8fZEpk83RLgXtYd0fwUgEjseMn1Dgajh2x6S8QbZAFa9p2qVCEuYZNgve0dQ==}
+    dev: false
+
+  /zod/3.20.2:
+    resolution: {integrity: sha512-1MzNQdAvO+54H+EaK5YpyEy0T+Ejo/7YLHS93G3RnYWh5gaotGHwGeN/ZO687qEDU2y4CdStQYXVHIgrUl5UVQ==}
     dev: false

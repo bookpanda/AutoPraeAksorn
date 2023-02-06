@@ -15,7 +15,8 @@
   },
   "dependencies": {
     "@mui/icons-material": "^5.11.0",
-    "@prisma/client": "^4.8.1"
+    "@prisma/client": "^4.8.1",
+    "zod": "^3.20.2"
   },
   "devDependencies": {
     "@leomotors/config": "^0.9.1",

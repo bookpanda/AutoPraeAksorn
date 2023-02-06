@@ -9,7 +9,7 @@ export const fetchData = async (formData: FormData) => {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
-      let imagesData: ImagesData = { data: [] };
+      let imagesData = ImagesData.parse({ data: [] });
       if (localStorage.getItem("images") !== null) {
         imagesData = JSON.parse(localStorage.getItem("images") as string);
       }
